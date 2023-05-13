@@ -11,14 +11,31 @@ public class DictionaryFileLoader {
      */
     public List<DictionaryEntry> getDictionaryEntryStream(String filepath) throws Exception {
         try (BufferedReader bufferedReader = Files.newBufferedReader(Path.of(filepath))) {
-            Stream<String> stream = bufferedReader.lines();
-            return stream
-                    .filter(s -> !s.startsWith("#"))
-                    .map(this::lineToDictionaryEntry)
-                    .collect(Collectors.toList());
+            return getDictionaryEntryStream(bufferedReader);
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    public List<DictionaryEntry> getDictionaryEntryStream() throws Exception {
+        ClassLoader classLoader = getClass().getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream("cedict_ts.u8");
+
+        try (
+                InputStreamReader streamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(streamReader)) {
+            return getDictionaryEntryStream(bufferedReader);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public List<DictionaryEntry> getDictionaryEntryStream(BufferedReader bufferedReader) throws Exception {
+        Stream<String> stream = bufferedReader.lines();
+        return stream
+                .filter(s -> !s.startsWith("#"))
+                .map(this::lineToDictionaryEntry)
+                .collect(Collectors.toList());
     }
 
      public DictionaryEntry lineToDictionaryEntry(String line) {
