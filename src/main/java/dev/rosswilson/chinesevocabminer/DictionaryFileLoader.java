@@ -6,7 +6,6 @@
 package dev.rosswilson.chinesevocabminer;
 
 import java.io.*;
-import java.nio.file.*;
 import java.util.*;
 import java.util.stream.*;
 
@@ -17,6 +16,7 @@ public class DictionaryFileLoader {
     public List<DictionaryEntry> getDictionaryEntryList(String resourcePath) throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(resourcePath);
+        if (Objects.isNull(inputStream)) throw new RuntimeException("inputStream is null!");
 
         try (
                 InputStreamReader streamReader = new InputStreamReader(inputStream);
@@ -56,13 +56,11 @@ public class DictionaryFileLoader {
 
         String pinyin = charsAndPinyinSplitBySpace[2].substring(1);
 
-        DictionaryEntry entry = new DictionaryEntry(
+        return new DictionaryEntry(
                 traditional,
                 simplified,
                 pinyin,
                 definitions
         );
-
-        return entry;
     }
 }
