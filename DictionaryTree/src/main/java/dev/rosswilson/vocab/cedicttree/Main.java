@@ -1,4 +1,4 @@
-package dev.rosswilson.chinesevocabminer;
+package dev.rosswilson.vocab.cedicttree;
 
 public class Main {
     public static void main(String[] args) {

@@ -3,7 +3,7 @@
  * All rights reserved.
  */
 
-package dev.rosswilson.chinesevocabminer;
+package dev.rosswilson.vocab.cedicttree;
 
 import org.junit.jupiter.api.*;
 

@@ -3,13 +3,13 @@
  * All rights reserved.
  */
 
-package dev.rosswilson.chinesevocabminer;
+package dev.rosswilson.vocab.cedicttree;
 
 import java.io.*;
 import java.util.*;
 import java.util.stream.*;
 
-import static dev.rosswilson.chinesevocabminer.GlobalConstants.*;
+import static dev.rosswilson.vocab.cedicttree.GlobalConstants.*;
 
 public class DictionaryFileLoader {
 

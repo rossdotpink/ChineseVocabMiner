@@ -1,8 +1,8 @@
-package dev.rosswilson.chinesevocabminer;
+package dev.rosswilson.vocab.cedicttree;
 
 import org.junit.jupiter.api.*;
 
-import static dev.rosswilson.chinesevocabminer.GlobalConstants.*;
+import static dev.rosswilson.vocab.cedicttree.GlobalConstants.*;
 
 class CharacterTreeBuilderTest {
 

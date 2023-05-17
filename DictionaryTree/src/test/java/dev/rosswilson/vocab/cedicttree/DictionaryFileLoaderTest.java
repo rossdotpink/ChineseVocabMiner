@@ -1,4 +1,4 @@
-package dev.rosswilson.chinesevocabminer;
+package dev.rosswilson.vocab.cedicttree;
 
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;

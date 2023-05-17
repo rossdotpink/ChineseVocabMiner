@@ -3,7 +3,7 @@
  * All rights reserved.
  */
 
-package dev.rosswilson.chinesevocabminer;
+package dev.rosswilson.vocab.cedicttree;
 
 public final class GlobalConstants {
     public static final String DICTIONARY_RESOURCE_PATH = "cedict_ts.u8";
