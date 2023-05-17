@@ -10,10 +10,7 @@ class DictionaryFileLoaderTest {
     DictionaryFileLoader loader = new DictionaryFileLoader();
 
     @Test
-    void getDictionaryEntryStream() {
-        /*
-            㲈 㲈 [tao2] /variant of 鞀|鼗[tao2]/
-         */
+    void lineToDictionaryEntry_givenDictionaryEntryString_returnsCorrectDictionaryEntry() {
         String line = "㲈 㲈 [tao2] /variant of 鞀|鼗[tao2]/";
         DictionaryEntry testEntry = new DictionaryEntry(
                 List.of('㲈'),
@@ -23,6 +20,5 @@ class DictionaryFileLoaderTest {
         );
 
         assertEquals(loader.lineToDictionaryEntry(line), testEntry);
-
     }
 }

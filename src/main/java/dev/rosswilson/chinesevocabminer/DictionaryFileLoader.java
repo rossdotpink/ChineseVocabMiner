@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2023. Ross Wilson.
+ * All rights reserved.
+ */
+
 package dev.rosswilson.chinesevocabminer;
 
 import java.io.*;
@@ -5,32 +10,32 @@ import java.nio.file.*;
 import java.util.*;
 import java.util.stream.*;
 
-public class DictionaryFileLoader {
-    /*
-     䫏 䫏 [qi1] /mask of a god used in ceremonies to exorcise demons and drive away pestilence/(archaic) ugly/
-     */
-    public List<DictionaryEntry> getDictionaryEntryStream(String filepath) throws Exception {
-        try (BufferedReader bufferedReader = Files.newBufferedReader(Path.of(filepath))) {
-            return getDictionaryEntryStream(bufferedReader);
-        } catch (Exception e) {
-            throw e;
-        }
-    }
+import static dev.rosswilson.chinesevocabminer.GlobalConstants.*;
 
-    public List<DictionaryEntry> getDictionaryEntryStream() throws Exception {
+public class DictionaryFileLoader {
+
+    public List<DictionaryEntry> getDictionaryEntryList(String resourcePath) throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream("cedict_ts.u8");
+        InputStream inputStream = classLoader.getResourceAsStream(resourcePath);
 
         try (
                 InputStreamReader streamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(streamReader)) {
-            return getDictionaryEntryStream(bufferedReader);
+            return getDictionaryEntryList(bufferedReader);
         } catch (Exception e) {
             throw e;
         }
     }
 
-    public List<DictionaryEntry> getDictionaryEntryStream(BufferedReader bufferedReader) throws Exception {
+    public List<DictionaryEntry> getDictionaryEntryList() throws Exception {
+        try {
+            return getDictionaryEntryList(DICTIONARY_RESOURCE_PATH);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public List<DictionaryEntry> getDictionaryEntryList(BufferedReader bufferedReader) {
         Stream<String> stream = bufferedReader.lines();
         return stream
                 .filter(s -> !s.startsWith("#"))

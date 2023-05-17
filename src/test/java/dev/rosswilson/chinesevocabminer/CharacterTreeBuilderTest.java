@@ -2,6 +2,8 @@ package dev.rosswilson.chinesevocabminer;
 
 import org.junit.jupiter.api.*;
 
+import static dev.rosswilson.chinesevocabminer.GlobalConstants.*;
+
 class CharacterTreeBuilderTest {
 
     CharacterTreeBuilder builder;
@@ -12,8 +14,7 @@ class CharacterTreeBuilderTest {
         builder = new CharacterTreeBuilder();
 
         DictionaryFileLoader loader = new DictionaryFileLoader();
-        tree = builder.buildCharacterTree(loader.getDictionaryEntryStream(
-                "/Users/rosswilson/IdeaProjects/ChineseVocabMiner/src/main/resources/cedict_ts.u8"));
+        tree = builder.buildCharacterTree(loader.getDictionaryEntryList(DICTIONARY_TEST_RESOURCE_PATH_500));
         recursivelyPrint(tree.getRoot(), 0);
     }
 
@@ -23,7 +24,7 @@ class CharacterTreeBuilderTest {
             System.out.print('-');
         }
         indentation++;
-//        System.out.println(rootNode.getId() + rootNode.getData().getTraditional().toString());
+
         System.out.print(rootNode.getId());
 
         if (rootNode.getChildren().isEmpty()) {
@@ -33,13 +34,8 @@ class CharacterTreeBuilderTest {
         System.out.println();
 
         for (CharacterTree.Node<Character, DictionaryEntry> childNode : rootNode.getChildren()) {
-
             recursivelyPrint(childNode, indentation);
         }
-
-
-
-
     }
 
     @Test

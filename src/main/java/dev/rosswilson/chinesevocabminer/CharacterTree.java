@@ -2,16 +2,20 @@ package dev.rosswilson.chinesevocabminer;
 
 import lombok.*;
 
+import java.io.*;
 import java.util.*;
 
-public class CharacterTree<T, U> {
+public class CharacterTree<T, U> implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Getter
     private Node<T, U> root;
 
     public CharacterTree(T rootData) {
-        root = new Node<T, U>();
+        root = new Node<>();
         root.id = rootData;
-        root.children = new ArrayList<Node<T, U>>();
+        root.children = new ArrayList<>();
     }
 
     @Getter @Setter
@@ -31,7 +35,5 @@ public class CharacterTree<T, U> {
             }
             return null;
         }
-
-
     }
 }
